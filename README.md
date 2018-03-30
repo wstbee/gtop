@@ -32,6 +32,11 @@ alias gtop="sudo ./$PATH_TO_GTOP_DIRECTORY/gtop"
 ```
  and don't forget to replace `$PATH_TO_GTOP_DIRECTORY`.
 
+Or copy executable to /usr/local/bin
+```
+sudo cp ./gtop /usr/local/bin
+```
+
 ## License
 
 GNU General Public License, version 3 (GPL-3.0)
