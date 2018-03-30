@@ -4,6 +4,7 @@ Martin Kersner, <m.kersner@gmail.com>, 2017
 
 ## Revision
 Revised the gtop.cc for Jetson TX2 with JetPack 3.2 (p28.2)
+
 Gilhyun Ryou, <gilhyun.ryou@gmail.com>, 2018
 
 ## Description
