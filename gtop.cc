@@ -11,13 +11,13 @@ bool processed = false;
 bool ready     = false;
 bool finished  = false;
 
-int main() {	
+int main() {
   if (getuid()) {
     std::cout << "gtop requires root privileges!" << std::endl;
     exit(1);
   }
 
-  std::thread t(read_tegrastats); 
+  std::thread t(read_tegrastats);
 
   initscr();
   noecho();
@@ -53,7 +53,6 @@ int main() {
     update_usage_chart(cpu_usage_buffer, t_stats.cpu_usage);
     display_usage_chart(10, cpu_usage_buffer);
 
-
     lk.unlock();
 
     refresh();
@@ -62,7 +61,7 @@ int main() {
       break;
   }
 
-  { 
+  {
     std::lock_guard<std::mutex> lk(m);
     finished = true;
   }
@@ -116,7 +115,7 @@ tegrastats parse_tegrastats(const char * buffer) {
   tegrastats ts;
   auto stats = tokenize(buffer, ' ');
 
-  if (stats.size() >= 15)
+  if (stats.size() <= 15)
     ts.version = TX1;
   else
     ts.version = TX2;
@@ -129,8 +128,10 @@ tegrastats parse_tegrastats(const char * buffer) {
       get_gpu_stats(ts, stats.at(15));
       break;
     case TX2:
-      get_cpu_stats_tx2(ts, stats.at(5));
-      get_gpu_stats(ts, stats.at(13));
+      // get_cpu_stats_tx2(ts, stats.at(5));
+      // get_gpu_stats(ts, stats.at(13));
+        get_cpu_stats_tx2(ts, stats.at(5));
+        get_gpu_stats(ts, stats.at(9));
       break;
     case TK1: // TODO
       break;
